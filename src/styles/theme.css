@@ -338,3 +338,39 @@ aside button:hover {
   color: #b91c1c;
   font-weight: bold;
 }
+.navegacao-aulas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 20px;
+}
+
+.navegacao-aulas button {
+  border: none;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: #8b5cf6;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.navegacao-aulas button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #7c3aed;
+}
+
+.navegacao-aulas button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.navegacao-aulas span {
+  font-weight: bold;
+  color: #4c1d95;
+}

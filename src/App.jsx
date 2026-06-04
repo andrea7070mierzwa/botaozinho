@@ -13,7 +13,21 @@ import { aulas } from "./data/aulas";
 
 export default function App() {
   const [trilhaAtual, setTrilhaAtual] = useState("bebe-js");
+  const [indiceAulaAtual, setIndiceAulaAtual] = useState(0);
   const [aulasConcluidas, setAulasConcluidas] = useState([]);
+
+  const aulasDaTrilha = aulas[trilhaAtual];
+  const aulaAtual = aulasDaTrilha[indiceAulaAtual];
+
+  const totalAulas = Object.values(aulas).reduce(
+    (total, listaDeAulas) => total + listaDeAulas.length,
+    0
+  );
+
+  function mudarTrilha(idTrilha) {
+    setTrilhaAtual(idTrilha);
+    setIndiceAulaAtual(0);
+  }
 
   function concluirAula(idAula) {
     setAulasConcluidas((aulasAtuais) => {
@@ -25,27 +39,56 @@ export default function App() {
     });
   }
 
+  function irParaProximaAula() {
+    if (indiceAulaAtual < aulasDaTrilha.length - 1) {
+      setIndiceAulaAtual(indiceAulaAtual + 1);
+    }
+  }
+
+  function voltarAula() {
+    if (indiceAulaAtual > 0) {
+      setIndiceAulaAtual(indiceAulaAtual - 1);
+    }
+  }
+
   return (
     <main className="layout-geral">
       <Header />
 
       <div className="layout">
-        <Sidebar setTrilhaAtual={setTrilhaAtual} trilhaAtual={trilhaAtual} />
+        <Sidebar setTrilhaAtual={mudarTrilha} trilhaAtual={trilhaAtual} />
 
         <section className="conteudo">
           <CapivaraScript />
 
-          <CardAula aula={aulas[trilhaAtual]} />
+          <CardAula aula={aulaAtual} />
 
-          <Quiz aula={aulas[trilhaAtual]} onConcluirAula={concluirAula} />
+          <Quiz aula={aulaAtual} onConcluirAula={concluirAula} />
+
+          <div className="navegacao-aulas">
+            <button onClick={voltarAula} disabled={indiceAulaAtual === 0}>
+              ← Aula anterior
+            </button>
+
+            <span>
+              Aula {indiceAulaAtual + 1} de {aulasDaTrilha.length}
+            </span>
+
+            <button
+              onClick={irParaProximaAula}
+              disabled={indiceAulaAtual === aulasDaTrilha.length - 1}
+            >
+              Próxima aula →
+            </button>
+          </div>
 
           <Exercicios />
         </section>
 
         <aside className="painel-lateral">
           <Progresso
-            trilhaAtual={trilhaAtual}
-            totalAulas={Object.keys(aulas).length}
+            aulaAtual={aulaAtual}
+            totalAulas={totalAulas}
             aulasConcluidas={aulasConcluidas}
           />
 

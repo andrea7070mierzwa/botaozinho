@@ -1,25 +1,10 @@
-const conquistas = [
-  {
-    id: "bebe-js",
-    texto: "🍼 Primeiro console.log",
-  },
-  {
-    id: "dev-rodinhas",
-    texto: "🚲 Chamou uma função sem cair",
-  },
-  {
-    id: "domador-arrays",
-    texto: "🧃 Domou o primeiro array",
-  },
-  {
-    id: "console-log",
-    texto: "☕ Sobreviveu ao console.log",
-  },
-];
+import { aulas } from "../../data/aulas";
+
+const todasAsAulas = Object.values(aulas).flat();
 
 export default function Conquistas({ aulasConcluidas }) {
-  const conquistasLiberadas = conquistas.filter((conquista) =>
-    aulasConcluidas.includes(conquista.id)
+  const conquistasLiberadas = todasAsAulas.filter((aula) =>
+    aulasConcluidas.includes(aula.id)
   );
 
   return (
@@ -30,8 +15,8 @@ export default function Conquistas({ aulasConcluidas }) {
         <p>Responda um quiz corretamente para desbloquear conquistas.</p>
       ) : (
         <ul>
-          {conquistasLiberadas.map((conquista) => (
-            <li key={conquista.id}>{conquista.texto}</li>
+          {conquistasLiberadas.map((aula) => (
+            <li key={aula.id}>✅ {aula.titulo}</li>
           ))}
         </ul>
       )}
