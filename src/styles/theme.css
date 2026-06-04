@@ -1,175 +1,187 @@
+/* =========================
+   🌈 BASE GERAL
+========================= */
+
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #ffe4f3, #e0f2fe);
-
   color: #2d2d2d;
-
   min-height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
+
+.layout-geral {
+  width: min(1500px, 100%);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* =========================
+   🍼 HEADER
+========================= */
 
 main {
-  background: white;
-
-  padding: 40px;
-
-  border-radius: 30px;
-
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-
-  text-align: center;
-}
-
-h1 {
-  font-size: 3rem;
-
-  margin-bottom: 10px;
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: 220px minmax(500px, 1fr) 240px;
-  gap: 24px;
-  align-items: start;
   width: 100%;
 }
 
+header,
+.layout-geral > header {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 28px 32px;
+  border-radius: 32px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+
+h2 {
+  line-height: 1.2;
+}
+
+/* =========================
+   🧭 GRID PRINCIPAL
+========================= */
+
+.layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) 260px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* =========================
+   🧭 SIDEBAR / TRILHAS
+========================= */
+
 aside {
-  background: white;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 22px;
+  border-radius: 28px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+}
 
-  padding: 20px;
-
-  border-radius: 30px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 12px;
+aside h2 {
+  margin-bottom: 16px;
 }
 
 aside button {
+  width: 100%;
   border: none;
-
-  padding: 14px;
-
+  padding: 14px 16px;
   border-radius: 16px;
-
   background: #8b5cf6;
-
   color: white;
-
   font-weight: bold;
-
   cursor: pointer;
+  transition: 0.25s;
+  margin-bottom: 12px;
 }
+
+aside button:hover {
+  transform: translateY(-3px);
+  background: #7c3aed;
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.28);
+}
+
+aside button.ativo {
+  background: #ec4899;
+  transform: scale(1.03);
+  box-shadow: 0 8px 18px rgba(236, 72, 153, 0.35);
+}
+
+/* =========================
+   📚 CONTEÚDO CENTRAL
+========================= */
 
 .conteudo {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.card-aula h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-.card-aula p {
-  font-size: 1.2rem;
-  line-height: 1.6;
+  gap: 22px;
+  min-width: 0;
 }
 
 .card-aula {
-  background: white;
-
-  padding: 40px;
-
-  border-radius: 30px;
-
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-
+  background: rgba(255, 255, 255, 0.95);
+  padding: clamp(24px, 4vw, 44px);
+  border-radius: 32px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+  text-align: center;
   transition: 0.3s;
 }
 
-pre {
-  background: #111827;
-
-  color: #d1fae5;
-
-  padding: 18px;
-
-  border-radius: 18px;
-
-  margin-top: 20px;
-
-  overflow-x: auto;
-
-  text-align: left;
-
-  line-height: 1.6;
+.card-aula h1 {
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  margin-bottom: 12px;
 }
 
+.card-aula p {
+  font-size: 1.12rem;
+  line-height: 1.7;
+}
+
+.explicacao {
+  margin-top: 22px;
+}
+
+.explicacao h2 {
+  margin-bottom: 10px;
+}
+
+/* =========================
+   📱 PREVIEW REAL
+========================= */
+
 .preview-real {
-  margin-top: 30px;
+  margin-top: 32px;
 }
 
 .preview-real h2 {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .preview-card {
   background: #f3f4f6;
-
-  padding: 20px;
-
-  border-radius: 20px;
-
+  padding: 22px;
+  border-radius: 22px;
   text-align: left;
-
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03);
 }
 
+/* =========================
+   🖥️ CANTINHO DA VERGONHA
+========================= */
+
 .cantinho {
-  margin-top: 30px;
-
+  margin-top: 32px;
   background: #111827;
-
-  border-radius: 24px;
-
+  border-radius: 26px;
   overflow: hidden;
-
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.25);
+  text-align: left;
 }
 
 .cantinho-topo {
   background: #1f2937;
-
   padding: 14px 20px;
-
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   color: white;
 }
 
 .bolinhas {
   display: flex;
-
   gap: 8px;
 }
 
 .bolinhas span {
   width: 12px;
-
   height: 12px;
-
   border-radius: 50%;
 }
 
@@ -186,135 +198,70 @@ pre {
 }
 
 .terminal {
-  padding: 24px;
-
+  padding: 26px;
   color: #d1fae5;
-
   font-family: monospace;
-
   display: flex;
-
   flex-direction: column;
-
-  gap: 10px;
+  gap: 12px;
+  line-height: 1.6;
 }
 
 .terminal code {
   color: #86efac;
-
   font-size: 1rem;
 }
 
-aside button.ativo {
-  background: #ec4899;
+/* =========================
+   💻 BLOCO DE CÓDIGO
+========================= */
 
-  transform: scale(1.03);
-
-  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.4);
+pre {
+  background: #111827;
+  color: #d1fae5;
+  padding: 22px;
+  border-radius: 22px;
+  margin-top: 24px;
+  overflow-x: auto;
+  text-align: left;
+  line-height: 1.7;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
-aside button {
-  transition: 0.25s;
-
-  border: none;
-
-  padding: 14px;
-
-  border-radius: 16px;
-
-  background: #8b5cf6;
-
-  color: white;
-
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-aside button:hover {
-  transform: translateY(-3px);
-
-  background: #7c3aed;
-
-  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.35);
-}
-
-.layout-geral {
-  width: 100%;
-  max-width: 1500px;
-  margin: auto;
-  padding: 24px;
-}
-
-.painel-lateral {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+/* =========================
+   🎯 QUIZ
+========================= */
 
 .card {
-  background: white;
-
-  padding: 20px;
-
-  border-radius: 24px;
-
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 24px;
+  border-radius: 26px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
 }
 
-.barra-progresso {
-  width: 100%;
-  height: 14px;
-  background: #ede9fe;
-  border-radius: 999px;
-  overflow: hidden;
-  margin: 12px 0;
+.quiz-card {
+  text-align: center;
 }
 
-.barra-preenchida {
-  width: 15%;
-  height: 100%;
-  background: #8b5cf6;
-  border-radius: 999px;
+.quiz-card h2 {
+  margin-bottom: 8px;
 }
 
-.conquistas-card ul {
-  list-style: none;
-  padding-left: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.quiz-card button,
-.exercicios-card button {
-  margin-top: 12px;
-}
-
-@media (max-width: 1000px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  aside,
-  .painel-lateral {
-    width: 100%;
-  }
-}
 .quiz-opcoes {
   display: grid;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 12px;
+  margin-top: 18px;
 }
 
 .quiz-opcoes button {
   border: none;
-  padding: 12px 16px;
-  border-radius: 14px;
+  padding: 13px 18px;
+  border-radius: 16px;
   background: #ede9fe;
   color: #4c1d95;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.22s;
 }
 
 .quiz-opcoes button:hover {
@@ -325,52 +272,184 @@ aside button:hover {
 .quiz-opcoes button.ativo {
   background: #8b5cf6;
   color: white;
+  box-shadow: 0 8px 18px rgba(139, 92, 246, 0.28);
+}
+
+.feedback-certo,
+.feedback-erro {
+  margin-top: 16px;
+  font-weight: bold;
 }
 
 .feedback-certo {
-  margin-top: 14px;
   color: #15803d;
-  font-weight: bold;
 }
 
 .feedback-erro {
-  margin-top: 14px;
   color: #b91c1c;
-  font-weight: bold;
 }
+
+/* =========================
+   ⬅️➡️ NAVEGAÇÃO ENTRE AULAS
+========================= */
+
 .navegacao-aulas {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  margin: 20px 0;
-  padding: 16px;
-  background: #f8fafc;
-  border-radius: 20px;
+  gap: 14px;
+  margin: 4px 0 10px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
 }
 
 .navegacao-aulas button {
   border: none;
-  padding: 12px 18px;
-  border-radius: 14px;
+  padding: 13px 20px;
+  border-radius: 16px;
   background: #8b5cf6;
   color: white;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.22s;
 }
 
 .navegacao-aulas button:hover:not(:disabled) {
   transform: translateY(-2px);
   background: #7c3aed;
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.28);
 }
 
 .navegacao-aulas button:disabled {
-  opacity: 0.4;
+  opacity: 0.42;
   cursor: not-allowed;
 }
 
 .navegacao-aulas span {
   font-weight: bold;
   color: #4c1d95;
+  text-align: center;
+}
+
+/* =========================
+   📊 PAINEL LATERAL
+========================= */
+
+.painel-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.progresso-card,
+.conquistas-card {
+  text-align: center;
+}
+
+.barra-progresso {
+  width: 100%;
+  height: 14px;
+  background: #ede9fe;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 14px 0;
+}
+
+.barra-preenchida {
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+
+.conquistas-card ul {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: 10px;
+  text-align: left;
+}
+
+.conquistas-card li {
+  background: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 14px;
+}
+
+/* =========================
+   ✍️ EXERCÍCIOS
+========================= */
+
+.exercicios-card {
+  text-align: center;
+}
+
+.exercicios-card button {
+  margin-top: 14px;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: #ec4899;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* =========================
+   📱 RESPONSIVIDADE
+========================= */
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  aside,
+  .painel-lateral {
+    width: 100%;
+  }
+
+  aside {
+    order: 1;
+  }
+
+  .conteudo {
+    order: 2;
+  }
+
+  .painel-lateral {
+    order: 3;
+  }
+}
+
+@media (max-width: 700px) {
+  .layout-geral {
+    padding: 14px;
+  }
+
+  header,
+  .layout-geral > header,
+  .card-aula,
+  .card {
+    border-radius: 22px;
+  }
+
+  .card-aula {
+    padding: 24px 18px;
+  }
+
+  .navegacao-aulas {
+    flex-direction: column;
+  }
+
+  .navegacao-aulas button {
+    width: 100%;
+  }
+
+  pre,
+  .terminal {
+    font-size: 0.9rem;
+  }
 }
