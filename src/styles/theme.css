@@ -1,0 +1,302 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffe4f3, #e0f2fe);
+
+  color: #2d2d2d;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 30px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+
+  margin-bottom: 10px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 220px minmax(500px, 1fr) 240px;
+  gap: 24px;
+  align-items: start;
+  width: 100%;
+}
+
+aside {
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+aside button {
+  border: none;
+
+  padding: 14px;
+
+  border-radius: 16px;
+
+  background: #8b5cf6;
+
+  color: white;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-aula h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.card-aula p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.card-aula {
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 30px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+  transition: 0.3s;
+}
+
+pre {
+  background: #111827;
+
+  color: #d1fae5;
+
+  padding: 18px;
+
+  border-radius: 18px;
+
+  margin-top: 20px;
+
+  overflow-x: auto;
+
+  text-align: left;
+
+  line-height: 1.6;
+}
+
+.preview-real {
+  margin-top: 30px;
+}
+
+.preview-real h2 {
+  margin-bottom: 15px;
+}
+
+.preview-card {
+  background: #f3f4f6;
+
+  padding: 20px;
+
+  border-radius: 20px;
+
+  text-align: left;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.cantinho {
+  margin-top: 30px;
+
+  background: #111827;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.cantinho-topo {
+  background: #1f2937;
+
+  padding: 14px 20px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  color: white;
+}
+
+.bolinhas {
+  display: flex;
+
+  gap: 8px;
+}
+
+.bolinhas span {
+  width: 12px;
+
+  height: 12px;
+
+  border-radius: 50%;
+}
+
+.vermelha {
+  background: #ef4444;
+}
+
+.amarela {
+  background: #f59e0b;
+}
+
+.verde {
+  background: #10b981;
+}
+
+.terminal {
+  padding: 24px;
+
+  color: #d1fae5;
+
+  font-family: monospace;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.terminal code {
+  color: #86efac;
+
+  font-size: 1rem;
+}
+
+aside button.ativo {
+  background: #ec4899;
+
+  transform: scale(1.03);
+
+  box-shadow: 0 5px 15px rgba(236,72,153,0.4);
+}
+
+aside button {
+  transition: 0.25s;
+
+  border: none;
+
+  padding: 14px;
+
+  border-radius: 16px;
+
+  background: #8b5cf6;
+
+  color: white;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+aside button:hover {
+  transform: translateY(-3px);
+
+  background: #7c3aed;
+
+  box-shadow: 0 10px 20px rgba(124,58,237,0.35);
+}
+
+.layout-geral {
+  width: 100%;
+  max-width: 1500px;
+  margin: auto;
+  padding: 24px;
+}
+
+.painel-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 24px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.barra-progresso {
+  width: 100%;
+  height: 14px;
+  background: #ede9fe;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.barra-preenchida {
+  width: 15%;
+  height: 100%;
+  background: #8b5cf6;
+  border-radius: 999px;
+}
+
+.conquistas-card ul {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.quiz-card button,
+.exercicios-card button {
+  margin-top: 12px;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  aside,
+  .painel-lateral {
+    width: 100%;
+  }
+}
