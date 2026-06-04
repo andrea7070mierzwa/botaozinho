@@ -13,6 +13,17 @@ import { aulas } from "./data/aulas";
 
 export default function App() {
   const [trilhaAtual, setTrilhaAtual] = useState("bebe-js");
+  const [aulasConcluidas, setAulasConcluidas] = useState([]);
+
+  function concluirAula(idAula) {
+    setAulasConcluidas((aulasAtuais) => {
+      if (aulasAtuais.includes(idAula)) {
+        return aulasAtuais;
+      }
+
+      return [...aulasAtuais, idAula];
+    });
+  }
 
   return (
     <main className="layout-geral">
@@ -26,15 +37,19 @@ export default function App() {
 
           <CardAula aula={aulas[trilhaAtual]} />
 
-          <Quiz aula={aulas[trilhaAtual]} />
+          <Quiz aula={aulas[trilhaAtual]} onConcluirAula={concluirAula} />
 
           <Exercicios />
         </section>
 
         <aside className="painel-lateral">
-          <Progresso />
+          <Progresso
+            trilhaAtual={trilhaAtual}
+            totalAulas={Object.keys(aulas).length}
+            aulasConcluidas={aulasConcluidas}
+          />
 
-          <Conquistas />
+          <Conquistas aulasConcluidas={aulasConcluidas} />
         </aside>
       </div>
     </main>

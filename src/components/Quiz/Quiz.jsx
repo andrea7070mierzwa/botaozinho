@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Quiz({ aula }) {
+export default function Quiz({ aula, onConcluirAula }) {
   const [respostaEscolhida, setRespostaEscolhida] = useState(null);
 
   useEffect(() => {
@@ -12,6 +12,13 @@ export default function Quiz({ aula }) {
   }
 
   const acertou = respostaEscolhida === aula.quiz.correta;
+  function responder(index) {
+    setRespostaEscolhida(index);
+
+    if (index === aula.quiz.correta) {
+      onConcluirAula(aula.id);
+    }
+  }
 
   return (
     <section className="card quiz-card">
@@ -23,7 +30,7 @@ export default function Quiz({ aula }) {
         {aula.quiz.alternativas.map((alternativa, index) => (
           <button
             key={alternativa}
-            onClick={() => setRespostaEscolhida(index)}
+            onClick={() => responder(index)}
             className={respostaEscolhida === index ? "ativo" : ""}
           >
             {alternativa}
