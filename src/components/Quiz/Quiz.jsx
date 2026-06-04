@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Quiz({ aula }) {
   const [respostaEscolhida, setRespostaEscolhida] = useState(null);
+
+  useEffect(() => {
+    setRespostaEscolhida(null);
+  }, [aula?.id]);
 
   if (!aula?.quiz) {
     return null;
