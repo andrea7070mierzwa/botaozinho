@@ -18,7 +18,7 @@ main {
 
   border-radius: 30px;
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
   text-align: center;
 }
@@ -90,7 +90,7 @@ aside button {
 
   border-radius: 30px;
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
   transition: 0.3s;
 }
@@ -130,7 +130,7 @@ pre {
 
   text-align: left;
 
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .cantinho {
@@ -142,7 +142,7 @@ pre {
 
   overflow: hidden;
 
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .cantinho-topo {
@@ -210,7 +210,7 @@ aside button.ativo {
 
   transform: scale(1.03);
 
-  box-shadow: 0 5px 15px rgba(236,72,153,0.4);
+  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.4);
 }
 
 aside button {
@@ -236,7 +236,7 @@ aside button:hover {
 
   background: #7c3aed;
 
-  box-shadow: 0 10px 20px rgba(124,58,237,0.35);
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.35);
 }
 
 .layout-geral {
@@ -259,7 +259,7 @@ aside button:hover {
 
   border-radius: 24px;
 
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .barra-progresso {
@@ -299,4 +299,42 @@ aside button:hover {
   .painel-lateral {
     width: 100%;
   }
+}
+.quiz-opcoes {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.quiz-opcoes button {
+  border: none;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #ede9fe;
+  color: #4c1d95;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.quiz-opcoes button:hover {
+  transform: translateY(-2px);
+  background: #ddd6fe;
+}
+
+.quiz-opcoes button.ativo {
+  background: #8b5cf6;
+  color: white;
+}
+
+.feedback-certo {
+  margin-top: 14px;
+  color: #15803d;
+  font-weight: bold;
+}
+
+.feedback-erro {
+  margin-top: 14px;
+  color: #b91c1c;
+  font-weight: bold;
 }

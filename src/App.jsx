@@ -15,41 +15,28 @@ export default function App() {
   const [trilhaAtual, setTrilhaAtual] = useState("bebe-js");
 
   return (
-  <main className="layout-geral">
+    <main className="layout-geral">
+      <Header />
 
-    <Header />
+      <div className="layout">
+        <Sidebar setTrilhaAtual={setTrilhaAtual} trilhaAtual={trilhaAtual} />
 
-    <div className="layout">
+        <section className="conteudo">
+          <CapivaraScript />
 
-      <Sidebar
-        setTrilhaAtual={setTrilhaAtual}
-        trilhaAtual={trilhaAtual}
-      />
+          <CardAula aula={aulas[trilhaAtual]} />
 
-      <section className="conteudo">
+          <Quiz aula={aulas[trilhaAtual]} />
 
-        <CapivaraScript />
+          <Exercicios />
+        </section>
 
-        <CardAula
-          aula={aulas[trilhaAtual]}
-        />
+        <aside className="painel-lateral">
+          <Progresso />
 
-        <Quiz />
-
-        <Exercicios />
-
-      </section>
-
-      <aside className="painel-lateral">
-
-        <Progresso />
-
-        <Conquistas />
-
-      </aside>
-
-    </div>
-
-  </main>
-);
+          <Conquistas />
+        </aside>
+      </div>
+    </main>
+  );
 }
