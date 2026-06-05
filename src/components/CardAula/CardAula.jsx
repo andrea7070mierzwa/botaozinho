@@ -1,6 +1,5 @@
 import PreviewReal from "../PreviewReal/PreviewReal";
-import CantinhoVergonha from
-"../CantinhoVergonha/CantinhoVergonha";
+import CantinhoVergonha from "../CantinhoVergonha/CantinhoVergonha";
 
 export default function CardAula({ aula }) {
   return (
@@ -14,16 +13,12 @@ export default function CardAula({ aula }) {
 
         <p>{aula.explicacao}</p>
 
-       <PreviewReal aula={aula} />
+        <PreviewReal aula={aula} />
 
-<CantinhoVergonha aula={aula} />
-
+        <CantinhoVergonha aula={aula} />
       </section>
 
-
-
       {aula.codigo && (
-        
         <pre>
           <code>{aula.codigo}</code>
         </pre>
@@ -31,5 +26,3 @@ export default function CardAula({ aula }) {
     </article>
   );
 }
-
-
