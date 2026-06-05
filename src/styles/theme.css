@@ -846,3 +846,192 @@ pre {
 .painel-professor-central {
   scroll-margin-top: 24px;
 }
+/* =========================
+   🎨 PREVIEW VISUAL INTERATIVO
+========================= */
+
+.preview-visual-card {
+  margin-top: 18px;
+  background: #f8fafc;
+  border-radius: 20px;
+  padding: 18px;
+  color: #111827;
+}
+
+.preview-visual-topo {
+  margin-bottom: 14px;
+}
+
+.preview-visual-topo h3 {
+  color: #4c1d95;
+  margin-bottom: 4px;
+}
+
+.preview-visual-topo p {
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.preview-visual-frame {
+  width: 100%;
+  min-height: 320px;
+  border: 2px solid #ddd6fe;
+  border-radius: 18px;
+  background: white;
+}
+
+.preview-erro {
+  margin-top: 10px;
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+.preview-ajuda {
+  margin-top: 12px;
+  background: white;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.preview-ajuda summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: #4c1d95;
+}
+
+.preview-ajuda ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.preview-ajuda li {
+  margin-bottom: 6px;
+}
+
+.preview-ajuda code {
+  background: #ede9fe;
+  color: #4c1d95;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+/* =========================
+   🖥️ TERMINAL + PREVIEW LADO A LADO
+========================= */
+
+.terminal-preview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.terminal-codigo {
+  display: grid;
+  gap: 14px;
+}
+
+.terminal-codigo label {
+  display: grid;
+  gap: 10px;
+  color: #d1fae5;
+  font-weight: bold;
+}
+
+.terminal-codigo textarea {
+  width: 100%;
+  min-height: 320px;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  background: #020617;
+  color: #d1fae5;
+  font-family: monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  resize: vertical;
+  outline: 2px solid rgba(134, 239, 172, 0.15);
+}
+
+.terminal-codigo textarea:focus {
+  outline-color: #86efac;
+}
+
+.terminal-codigo button {
+  width: fit-content;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: #22c55e;
+  color: #052e16;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.preview-visual-card {
+  background: #f8fafc;
+  border-radius: 20px;
+  padding: 18px;
+  color: #111827;
+}
+
+.preview-visual-topo {
+  margin-bottom: 14px;
+}
+
+.preview-visual-topo h3 {
+  color: #4c1d95;
+  margin-bottom: 4px;
+}
+
+.preview-visual-topo p {
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.preview-visual-frame {
+  width: 100%;
+  min-height: 390px;
+  border: 2px solid #ddd6fe;
+  border-radius: 18px;
+  background: white;
+}
+
+.preview-ajuda {
+  margin-top: 12px;
+  background: white;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.preview-ajuda summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: #4c1d95;
+}
+
+.preview-ajuda ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.preview-ajuda li {
+  margin-bottom: 6px;
+}
+
+.preview-ajuda code {
+  background: #ede9fe;
+  color: #4c1d95;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+@media (max-width: 1100px) {
+  .terminal-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .terminal-codigo textarea,
+  .preview-visual-frame {
+    min-height: 280px;
+  }
+}

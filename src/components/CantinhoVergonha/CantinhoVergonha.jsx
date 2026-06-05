@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PreviewVisual from "../PreviewVisual/PreviewVisual";
 
 export default function CantinhoVergonha({ aula }) {
   const [codigo, setCodigo] = useState(aula?.codigo || "");
@@ -17,9 +18,46 @@ export default function CantinhoVergonha({ aula }) {
     setMissaoCumprida(false);
   }, [aula?.id, aula?.codigo]);
 
+  function criarId() {
+    if (crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+
+    return `tentativa-${Date.now()}`;
+  }
+
+  function criarDocumentoDeTreino() {
+    const documentoTreino = document.implementation.createHTMLDocument(
+      "Documento de treino"
+    );
+
+    documentoTreino.body.innerHTML = `
+      <main class="palco">
+        <section class="cartao" id="cartao">
+          <h1 id="titulo">Botãozinho JS</h1>
+          <p id="mensagem">O resultado visual aparecerá aqui.</p>
+
+          <button id="botao">Clique aqui</button>
+
+          <input id="campoTexto" type="text" placeholder="Digite algo..." />
+
+          <ul id="lista"></ul>
+
+          <div id="caixa">Caixa visual</div>
+        </section>
+      </main>
+    `;
+
+    return documentoTreino;
+  }
+
   function formatarMensagem(mensagem) {
     if (typeof mensagem === "object") {
-      return JSON.stringify(mensagem, null, 2);
+      try {
+        return JSON.stringify(mensagem, null, 2);
+      } catch {
+        return String(mensagem);
+      }
     }
 
     return String(mensagem);
@@ -72,8 +110,10 @@ export default function CantinhoVergonha({ aula }) {
     };
 
     try {
-      const executar = new Function("console", codigo);
-      const retorno = executar(consoleFake);
+      const documentoTreino = criarDocumentoDeTreino();
+
+      const executar = new Function("console", "document", codigo);
+      const retorno = executar(consoleFake, documentoTreino);
 
       let saida = "";
 
@@ -98,7 +138,7 @@ export default function CantinhoVergonha({ aula }) {
 
       setHistorico((tentativas) => [
         {
-          id: crypto.randomUUID(),
+          id: criarId(),
           codigo,
           resultado: mensagemFinal,
           data: new Date().toLocaleTimeString("pt-BR"),
@@ -112,7 +152,7 @@ export default function CantinhoVergonha({ aula }) {
 
       setHistorico((tentativas) => [
         {
-          id: crypto.randomUUID(),
+          id: criarId(),
           codigo,
           resultado: mensagemErro,
           data: new Date().toLocaleTimeString("pt-BR"),
@@ -172,22 +212,28 @@ export default function CantinhoVergonha({ aula }) {
           </section>
         )}
 
-        <label>
-          Escreva ou altere o código:
-          <textarea
-            value={codigo}
-            onChange={(event) => setCodigo(event.target.value)}
-            spellCheck="false"
-          />
-        </label>
+        <div className="terminal-preview-grid">
+          <section className="terminal-codigo">
+            <label>
+              Escreva ou altere o código:
+              <textarea
+                value={codigo}
+                onChange={(event) => setCodigo(event.target.value)}
+                spellCheck="false"
+              />
+            </label>
 
-        <button type="button" onClick={executarCodigo}>
-          Executar
-        </button>
+            <button type="button" onClick={executarCodigo}>
+              Executar no terminal
+            </button>
 
-        <div className="saida-terminal">
-          <p>Resultado:</p>
-          <pre>{resultado || "Aguardando execução..."}</pre>
+            <div className="saida-terminal">
+              <p>Resultado no console:</p>
+              <pre>{resultado || "Aguardando execução..."}</pre>
+            </div>
+          </section>
+
+          <PreviewVisual jsAluno={codigo} />
         </div>
 
         {historico.length > 0 && (
