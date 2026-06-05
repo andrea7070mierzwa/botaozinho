@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Login from "./components/Login/Login";
 import PainelProfessor from "./components/PainelProfessor/PainelProfessor";
@@ -15,10 +15,17 @@ import Conquistas from "./components/Conquistas/Conquistas";
 import { aulas } from "./data/aulas";
 
 export default function App() {
-  const [usuario, setUsuario] = useState(null);
+  const [usuario, setUsuario] = useState(() => {
+    const usuarioSalvo = localStorage.getItem("botaozinho-usuario");
+    return usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
+  });
+
   const [trilhaAtual, setTrilhaAtual] = useState("bebe-js");
   const [indiceAulaAtual, setIndiceAulaAtual] = useState(0);
   const [aulasConcluidas, setAulasConcluidas] = useState([]);
+  const [mostrarPainelProfessor, setMostrarPainelProfessor] = useState(false);
+
+  const painelProfessorRef = useRef(null);
 
   const [exerciciosExtras, setExerciciosExtras] = useState(() => {
     const exerciciosSalvos = localStorage.getItem("botaozinho-exercicios");
@@ -33,17 +40,29 @@ export default function App() {
     0
   );
 
+  useEffect(() => {
+    if (mostrarPainelProfessor && painelProfessorRef.current) {
+      painelProfessorRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [mostrarPainelProfessor]);
+
   function fazerLogin(dadosUsuario) {
     setUsuario(dadosUsuario);
   }
 
   function sair() {
+    localStorage.removeItem("botaozinho-usuario");
     setUsuario(null);
+    setMostrarPainelProfessor(false);
   }
 
   function mudarTrilha(idTrilha) {
     setTrilhaAtual(idTrilha);
     setIndiceAulaAtual(0);
+    setMostrarPainelProfessor(false);
   }
 
   function concluirAula(idAula) {
@@ -79,6 +98,19 @@ export default function App() {
     );
   }
 
+  function excluirExercicio(idExercicio) {
+    const listaAtualizada = exerciciosExtras.filter(
+      (exercicio) => exercicio.id !== idExercicio
+    );
+
+    setExerciciosExtras(listaAtualizada);
+
+    localStorage.setItem(
+      "botaozinho-exercicios",
+      JSON.stringify(listaAtualizada)
+    );
+  }
+
   const exerciciosDaAulaAtual = exerciciosExtras.filter(
     (exercicio) => exercicio.aulaId === aulaAtual.id
   );
@@ -102,8 +134,35 @@ export default function App() {
           {exerciciosDaAulaAtual.map((exercicio) => (
             <section className="card exercicio-extra" key={exercicio.id}>
               <span>{exercicio.dificuldade}</span>
+
               <h2>{exercicio.titulo}</h2>
-              <p>{exercicio.descricao}</p>
+
+              <p>{exercicio.pergunta || exercicio.descricao}</p>
+
+              {exercicio.alternativas && (
+                <div className="exercicio-extra-opcoes">
+                  {exercicio.alternativas.map((alternativa, index) => (
+                    <div
+                      key={`${exercicio.id}-${index}`}
+                      className={
+                        index === exercicio.correta
+                          ? "exercicio-extra-opcao correta"
+                          : "exercicio-extra-opcao"
+                      }
+                    >
+                      <strong>{String.fromCharCode(65 + index)})</strong>{" "}
+                      {alternativa}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {exercicio.alternativas && (
+                <p className="resposta-extra">
+                  ✅ Resposta correta: alternativa{" "}
+                  {String.fromCharCode(65 + exercicio.correta)}
+                </p>
+              )}
             </section>
           ))}
 
@@ -127,6 +186,33 @@ export default function App() {
           </div>
 
           <Exercicios />
+
+          {usuario.tipo === "professor" && mostrarPainelProfessor && (
+            <section
+              className="painel-professor-central"
+              ref={painelProfessorRef}
+            >
+              <div className="painel-professor-topo">
+                <div>
+                  <h2>➕ Inserir exercícios</h2>
+                  <p>Cadastre novos desafios para a aula escolhida.</p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setMostrarPainelProfessor(false)}
+                >
+                  Fechar painel
+                </button>
+              </div>
+
+              <PainelProfessor
+                exerciciosExtras={exerciciosExtras}
+                onAdicionarExercicio={adicionarExercicio}
+                onExcluirExercicio={excluirExercicio}
+              />
+            </section>
+          )}
         </section>
 
         <aside className="painel-lateral">
@@ -138,7 +224,22 @@ export default function App() {
           </section>
 
           {usuario.tipo === "professor" && (
-            <PainelProfessor onAdicionarExercicio={adicionarExercicio} />
+            <section className="card inserir-exercicios-card">
+              <h2>➕ Exercícios</h2>
+
+              <p>Abra o painel para cadastrar novos cards.</p>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setMostrarPainelProfessor((estadoAtual) => !estadoAtual)
+                }
+              >
+                {mostrarPainelProfessor
+                  ? "Ocultar painel"
+                  : "Inserir exercícios"}
+              </button>
+            </section>
           )}
 
           <Progresso

@@ -719,3 +719,130 @@ pre {
 .historico-terminal pre {
   margin-top: 6px;
 }
+.login-erro {
+  color: #b91c1c;
+  font-weight: bold;
+  background: #fee2e2;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.login-dica {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.lista-exercicios-professor {
+  margin-top: 22px;
+  display: grid;
+  gap: 12px;
+}
+
+.lista-exercicios-professor h3 {
+  margin-top: 10px;
+}
+
+.item-exercicio-professor {
+  display: grid;
+  gap: 8px;
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 16px;
+  text-align: left;
+}
+
+.item-exercicio-professor small {
+  color: #6b7280;
+}
+
+.item-exercicio-professor button {
+  background: #ef4444;
+  color: white;
+}
+/* =========================
+   🧑‍🏫 PAINEL PROFESSOR NA COLUNA CENTRAL
+========================= */
+
+.inserir-exercicios-card {
+  text-align: center;
+}
+
+.inserir-exercicios-card p {
+  margin: 10px 0 14px;
+  font-size: 0.95rem;
+}
+
+.inserir-exercicios-card button {
+  width: 100%;
+  border: none;
+  padding: 13px 16px;
+  border-radius: 16px;
+  background: #ec4899;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.22s;
+}
+
+.inserir-exercicios-card button:hover {
+  transform: translateY(-2px);
+  background: #db2777;
+  box-shadow: 0 8px 18px rgba(219, 39, 119, 0.28);
+}
+
+.painel-professor-central {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 28px;
+  border-radius: 32px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+  border-left: 8px solid #ec4899;
+}
+
+.painel-professor-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.painel-professor-topo p {
+  margin-top: 6px;
+  color: #6b7280;
+}
+
+.painel-professor-topo button {
+  border: none;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #111827;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.painel-professor-central .painel-professor {
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+}
+
+.painel-professor-central .painel-professor > h2,
+.painel-professor-central .painel-professor > p {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .painel-professor-topo {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .painel-professor-topo button {
+    width: 100%;
+  }
+}
+.painel-professor-central {
+  scroll-margin-top: 24px;
+}
