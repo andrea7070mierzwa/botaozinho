@@ -624,3 +624,98 @@ pre {
   color: #86efac;
   min-height: 60px;
 }
+/* =========================
+   🎯 MISSÃO GUIADA NO TERMINAL
+========================= */
+
+.missao-terminal {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(134, 239, 172, 0.25);
+  border-radius: 18px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.missao-terminal h3 {
+  color: #bbf7d0;
+  margin: 0;
+}
+
+.missao-terminal p {
+  color: #d1fae5;
+  line-height: 1.6;
+}
+
+.dica-terminal {
+  display: grid;
+  gap: 6px;
+  background: #020617;
+  border-radius: 14px;
+  padding: 14px;
+  color: #fde68a;
+}
+
+.dica-terminal strong {
+  color: #facc15;
+}
+
+.dica-terminal span {
+  color: #fef3c7;
+}
+
+.missao-terminal button {
+  width: fit-content;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #facc15;
+  color: #422006;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.missao-terminal button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.missao-cumprida {
+  background: #dcfce7;
+  color: #166534 !important;
+  padding: 12px;
+  border-radius: 14px;
+  font-weight: bold;
+}
+
+.historico-terminal {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.historico-terminal h3 {
+  color: #d1fae5;
+}
+
+.historico-terminal details {
+  background: #020617;
+  border-radius: 14px;
+  padding: 12px;
+  color: #d1fae5;
+}
+
+.historico-terminal summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: #86efac;
+}
+
+.historico-terminal p {
+  margin: 10px 0 6px;
+  color: #d1fae5;
+}
+
+.historico-terminal pre {
+  margin-top: 6px;
+}

@@ -17,12 +17,6 @@ export default function CardAula({ aula }) {
 
         <CantinhoVergonha aula={aula} />
       </section>
-
-      {aula.codigo && (
-        <pre>
-          <code>{aula.codigo}</code>
-        </pre>
-      )}
     </article>
   );
 }

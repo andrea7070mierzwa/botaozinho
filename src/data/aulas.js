@@ -599,6 +599,20 @@ botao.addEventListener("click", acordarBotaozinho);`,
         saida: "A função executa antes do clique 😅",
         dica: "Passe a função sem parênteses: addEventListener('click', acordarBotaozinho).",
       },
+      desafio: {
+        titulo: "🎯 Missão: primeira variável",
+        enunciado:
+          'Crie uma variável chamada cidade com o valor "Jaraguá do Sul" e mostre esse valor no console.',
+        dicas: [
+          "Você precisa criar uma variável com const.",
+          'O texto precisa estar entre aspas: "Jaraguá do Sul".',
+          "Depois mostre no console com console.log(cidade).",
+        ],
+        validacao: {
+          deveConter: ["const cidade", "console.log"],
+          saidaEsperada: "Jaraguá do Sul",
+        },
+      },
       quiz: {
         pergunta:
           "No addEventListener, por que passamos a função sem parênteses?",
