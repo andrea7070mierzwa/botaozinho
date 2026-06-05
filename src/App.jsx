@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+import Login from "./components/Login/Login";
+import PainelProfessor from "./components/PainelProfessor/PainelProfessor";
+
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import CapivaraScript from "./components/CapivaraScript/CapivaraScript";
@@ -12,9 +15,15 @@ import Conquistas from "./components/Conquistas/Conquistas";
 import { aulas } from "./data/aulas";
 
 export default function App() {
+  const [usuario, setUsuario] = useState(null);
   const [trilhaAtual, setTrilhaAtual] = useState("bebe-js");
   const [indiceAulaAtual, setIndiceAulaAtual] = useState(0);
   const [aulasConcluidas, setAulasConcluidas] = useState([]);
+
+  const [exerciciosExtras, setExerciciosExtras] = useState(() => {
+    const exerciciosSalvos = localStorage.getItem("botaozinho-exercicios");
+    return exerciciosSalvos ? JSON.parse(exerciciosSalvos) : [];
+  });
 
   const aulasDaTrilha = aulas[trilhaAtual];
   const aulaAtual = aulasDaTrilha[indiceAulaAtual];
@@ -23,6 +32,14 @@ export default function App() {
     (total, listaDeAulas) => total + listaDeAulas.length,
     0
   );
+
+  function fazerLogin(dadosUsuario) {
+    setUsuario(dadosUsuario);
+  }
+
+  function sair() {
+    setUsuario(null);
+  }
 
   function mudarTrilha(idTrilha) {
     setTrilhaAtual(idTrilha);
@@ -51,6 +68,25 @@ export default function App() {
     }
   }
 
+  function adicionarExercicio(novoExercicio) {
+    const listaAtualizada = [...exerciciosExtras, novoExercicio];
+
+    setExerciciosExtras(listaAtualizada);
+
+    localStorage.setItem(
+      "botaozinho-exercicios",
+      JSON.stringify(listaAtualizada)
+    );
+  }
+
+  const exerciciosDaAulaAtual = exerciciosExtras.filter(
+    (exercicio) => exercicio.aulaId === aulaAtual.id
+  );
+
+  if (!usuario) {
+    return <Login onLogin={fazerLogin} />;
+  }
+
   return (
     <main className="layout-geral">
       <Header />
@@ -62,6 +98,14 @@ export default function App() {
           <CapivaraScript />
 
           <CardAula aula={aulaAtual} />
+
+          {exerciciosDaAulaAtual.map((exercicio) => (
+            <section className="card exercicio-extra" key={exercicio.id}>
+              <span>{exercicio.dificuldade}</span>
+              <h2>{exercicio.titulo}</h2>
+              <p>{exercicio.descricao}</p>
+            </section>
+          ))}
 
           <Quiz aula={aulaAtual} onConcluirAula={concluirAula} />
 
@@ -86,6 +130,17 @@ export default function App() {
         </section>
 
         <aside className="painel-lateral">
+          <section className="card usuario-card">
+            <h2>👤 Usuário</h2>
+            <p>{usuario.nome}</p>
+            <strong>{usuario.tipo}</strong>
+            <button onClick={sair}>Sair</button>
+          </section>
+
+          {usuario.tipo === "professor" && (
+            <PainelProfessor onAdicionarExercicio={adicionarExercicio} />
+          )}
+
           <Progresso
             aulaAtual={aulaAtual}
             totalAulas={totalAulas}
